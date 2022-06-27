@@ -3,7 +3,7 @@ package praticaintegradoraum;
 public class PessoaExercicioUm {
     String nome;
     int idade;
-    String id;
+    String ID;
     double peso;
     double altura;
 
