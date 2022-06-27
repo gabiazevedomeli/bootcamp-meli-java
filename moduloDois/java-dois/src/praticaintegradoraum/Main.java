@@ -1,6 +1,4 @@
-package exerciciotresequatro;
-
-import exerciciodois.Pessoa;
+package praticaintegradoraum;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,5 +14,3 @@ public class Main {
         System.out.println(pessoaConstrutorDois.ehMaiorIdade(18));
     }
 }
-
-// teste
