@@ -1,4 +1,4 @@
-package exercicioum;
+package praticaintegradoraum;
 
 public class PessoaExercicioUm {
     String nome;

@@ -1,4 +1,4 @@
-package exerciciodois;
+package praticaintegradoraum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
