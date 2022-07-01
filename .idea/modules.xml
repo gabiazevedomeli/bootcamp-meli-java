@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/bootcamp-meli-java.iml" filepath="$PROJECT_DIR$/.idea/bootcamp-meli-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduloDois/java-dois/java-dois.iml" filepath="$PROJECT_DIR$/moduloDois/java-dois/java-dois.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduloDois/java-tres/java-tres.iml" filepath="$PROJECT_DIR$/moduloDois/java-tres/java-tres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduloDois/java-um/java-um.iml" filepath="$PROJECT_DIR$/moduloDois/java-um/java-um.iml" />
+    </modules>
+  </component>
+</project>
