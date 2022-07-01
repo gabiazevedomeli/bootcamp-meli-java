@@ -1,17 +1,25 @@
 package praticaintegradoraum.exerciciodois.classes;
 
-import praticaintegradoraum.exerciciodois.interfaces.Imprimir;
-
-public class Relatorios implements Imprimir {
-    // texto de comprimento n
+public class Relatorios extends Documento {
+    private String texto;
     private int numeroPaginas;
     private String autor;
     private String revisor;
 
-    public Relatorios(int numeroPaginas, String autor, String revisor) {
+    public Relatorios(String ID, String texto, int numeroPaginas, String autor, String revisor) {
+        super(ID);
+        this.texto = texto;
         this.numeroPaginas = numeroPaginas;
         this.autor = autor;
         this.revisor = revisor;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public int getNumeroPaginas() {
@@ -39,7 +47,12 @@ public class Relatorios implements Imprimir {
     }
 
     @Override
-    public void imprimiDocumento(String tipoDocumento) {
-        // implementação do método para esse caso
+    public String toString() {
+        return "Relatorios{" +
+                "texto='" + texto + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                ", autor='" + autor + '\'' +
+                ", revisor='" + revisor + '\'' +
+                '}';
     }
 }

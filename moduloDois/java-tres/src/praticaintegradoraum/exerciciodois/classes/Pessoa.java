@@ -34,4 +34,13 @@ public class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }

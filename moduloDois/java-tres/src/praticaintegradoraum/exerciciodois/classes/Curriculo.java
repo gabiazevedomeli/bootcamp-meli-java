@@ -1,16 +1,22 @@
 package praticaintegradoraum.exerciciodois.classes;
 
-import praticaintegradoraum.exerciciodois.interfaces.Imprimir;
+import java.util.List;
 
-import java.util.ArrayList;
-
-public class Curriculo implements Imprimir {
+public class Curriculo extends Documento {
     private Pessoa pessoa;
-    private ArrayList habilidades;
+    List<Habilidade> habilidades;
 
+    public Curriculo(String ID, Pessoa pessoa, List<Habilidade> habilidades) {
+        super(ID);
+        this.pessoa = pessoa;
+        this.habilidades = habilidades;
+    }
 
     @Override
-    public void imprimiDocumento(String tipoDocumento) {
-        // implementação do método para esse caso
+    public String toString() {
+        return "Curriculo{" +
+                "pessoa=" + pessoa +
+                ", habilidades=" + habilidades +
+                '}';
     }
 }

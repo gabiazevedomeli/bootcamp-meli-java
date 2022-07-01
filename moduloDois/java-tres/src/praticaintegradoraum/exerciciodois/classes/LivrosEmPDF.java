@@ -1,14 +1,13 @@
 package praticaintegradoraum.exerciciodois.classes;
 
-import praticaintegradoraum.exerciciodois.interfaces.Imprimir;
-
-public class LivrosEmPDF implements Imprimir {
+public class LivrosEmPDF extends Documento {
     private int numeroPaginas;
     private String nomeAutor;
     private String titulo;
     private String genero;
 
-    public LivrosEmPDF(int numeroPaginas, String nomeAutor, String titulo, String genero) {
+    public LivrosEmPDF(String ID, int numeroPaginas, String nomeAutor, String titulo, String genero) {
+        super(ID);
         this.numeroPaginas = numeroPaginas;
         this.nomeAutor = nomeAutor;
         this.titulo = titulo;
@@ -48,7 +47,12 @@ public class LivrosEmPDF implements Imprimir {
     }
 
     @Override
-    public void imprimiDocumento(String tipoDocumento) {
-        // implementação do método para esse caso
+    public String toString() {
+        return "LivrosEmPDF{" +
+                "numeroPaginas=" + numeroPaginas +
+                ", nomeAutor='" + nomeAutor + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", genero='" + genero + '\'' +
+                '}';
     }
 }
