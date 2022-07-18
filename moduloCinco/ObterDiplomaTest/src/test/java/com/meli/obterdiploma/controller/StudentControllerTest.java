@@ -50,7 +50,7 @@ class StudentControllerTest {
 
         ResponseEntity<StudentDTO> response = controller.registerStudent(newStudent);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getId()).isNotNull().isPositive();
 
@@ -61,11 +61,11 @@ class StudentControllerTest {
     void getStudent() {
         StudentDTO studentDTO = TestUtilsGenerator.getStudentWithId();
 
-        StudentDTO studentFound = controller.getStudent(studentDTO.getId());
+        ResponseEntity<StudentDTO> response = controller.getStudent(studentDTO.getId());
 
         verify(studentService, atLeastOnce()).read(studentDTO.getId());
 
-        assertThat(studentFound.getId()).isEqualTo(studentDTO.getId());
+        assertThat(response.getBody().getId()).isEqualTo(studentDTO.getId());
 
     }
 
