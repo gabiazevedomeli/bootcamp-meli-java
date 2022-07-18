@@ -38,17 +38,17 @@ class StudentDAOTest {
     // Método executado antes de cada este para limpar a base de dados
     @BeforeEach
     void setup() {
-        studentDAO = new StudentDAO();
         TestUtilsGenerator.emptyUsersFile();
+        studentDAO = new StudentDAO();
     }
 
     // Método executado após rodar todos os testes, limpa qualquer resíduo existente na base de dados
-    @AfterAll
+    // @AfterAll
     // precisa ser declarado como método estático
-    public static void tearDown() {
+    // public static void tearDown() {
         // apaga todos os registros do arquivo que simula a base de dados
-        TestUtilsGenerator.emptyUsersFile();
-    }
+        //TestUtilsGenerator.emptyUsersFile();
+    //}
 
     @Test
     @DisplayName("Salva novo estudante, quando o registro não existe na base de dados")
@@ -118,7 +118,35 @@ class StudentDAOTest {
     }
 
     @Test
-    void delete() {
+    @DisplayName("Deleta estudante quando estudante existe")
+    void delete_removeStudent_whenStudentExist() {
+        // Criação do cenário - cria estudante na base de dados
+        StudentDTO newStudent = TestUtilsGenerator.getNewStudentWithOneSubject();
+        StudentDTO savedStudent = studentDAO.save(newStudent);
+
+        // Executa o cenário - deleta o estudante
+        studentDAO.delete(savedStudent.getId());
+
+        // Testa o cenário - se o estudante foi removido da base de dados
+        assertThat(studentDAO.exists(savedStudent)).isFalse();
+    }
+
+    @Test
+    @DisplayName("Lança exceção quando o estudante não existe")
+    void delete_throwException_whenStudentNotExist() {
+        // Criação do cenário - cria estudante na base de dados
+        StudentDTO student = TestUtilsGenerator.getStudentWithId();
+
+        // Executa o cenário - deleta o estudante
+
+        StudentNotFoundException exception = Assertions.assertThrows(StudentNotFoundException.class, () -> {
+            studentDAO.delete(student.getId());
+        });
+
+        // Testa o cenário
+        assertThat(exception.getError().getDescription()).contains(student.getId().toString());
+        // Testa se o status code lançado é o NOT_FOUND
+        assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test

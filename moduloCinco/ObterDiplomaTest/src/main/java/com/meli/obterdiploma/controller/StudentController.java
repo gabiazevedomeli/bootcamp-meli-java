@@ -3,6 +3,7 @@ package com.meli.obterdiploma.controller;
 import com.meli.obterdiploma.model.StudentDTO;
 import com.meli.obterdiploma.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +18,14 @@ public class StudentController {
     IStudentService studentService;
 
     @PostMapping("/registerStudent")
-    public ResponseEntity<?> registerStudent(@RequestBody @Valid StudentDTO stu) {
-        this.studentService.create(stu);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<StudentDTO> registerStudent(@RequestBody @Valid StudentDTO stu) {
+        if (stu.getId() != null) return ResponseEntity.badRequest().build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.create(stu));
     }
 
     @GetMapping("/getStudent/{id}")
-    public StudentDTO getStudent(@PathVariable Long id) {
-        return this.studentService.read(id);
+    public ResponseEntity<StudentDTO> getStudent(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.read(id));
     }
 
     @PostMapping("/modifyStudent")
@@ -34,9 +35,9 @@ public class StudentController {
     }
 
     @GetMapping("/removeStudent/{id}")
-    public ResponseEntity<?> removeStudent(@PathVariable Long id) {
+    public ResponseEntity<Void> removeStudent(@PathVariable Long id) {
         this.studentService.delete(id);
-        return ResponseEntity.ok(null);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/listStudents")
