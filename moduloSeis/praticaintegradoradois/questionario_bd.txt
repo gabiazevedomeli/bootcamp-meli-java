@@ -1,0 +1,12 @@
+a. Qual é a chave primária para a tabela clientes? Justifique a resposta.
+    A tabela cliente possui a chave primária sendo cpf_cliente. Escolhi para ser a PK o CPF do cliente e tipei como CHAR(14), pois o banco só
+    aceitará CPF com 14 caracteres, formato 000.000.000-00.
+
+b. Qual é a chave primária da tabela de planos de internet? Justifique sua resposta.
+    A tabela planos de internet possui chave primária sendo id_plano. Escolhi um id auto incrementável e inteiro.
+
+c. Como seriam as relações entre as tabelas? Em qual tabela deve estar a chave estrangeira? A qual campo de qual tabela
+   essa chave estrangeira se refere? Justifique sua resposta.
+    Entendo que o relacionamento entre tabelas seria de 1:N, pois 1 cliente(CPF) pode assinar vários planos. A FK(foreign key) ficaria na
+    tabela de planos de internet. O campo id_cliente(FK) que está na tabela Planos_Internet se refere ao campo cpf_cliente da tabela Clientes.
+    Assim podemos saber quais planos um cliente assinou.
