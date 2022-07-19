@@ -1,0 +1,37 @@
+1. Como é chamado um JOIN em um banco de dados e para que é usado?
+    É chamado de INNER JOIN. É usado para obter dados de várias tabelas relacionadas.
+    Pensando na teoria dos conjuntos, podemos exemplificar o INNER JOIN como a intersecção de dois conjuntos, ou seja,
+    os dados que se cruzam entre duas ou mais tabelas à partir de cláusulas ou condições.
+
+2. Explique os tipos de JOIN.
+
+    INNER JOIN - Relacionamento entre duas ou mais tabelas à partir de cláusulas ou condições.
+    LEFT JOIN - São retornados na query todos os registros da tabela da esquerda e registros correspondentes na tabela da direita, caso existam.
+    RIGHT JOIN - São retornados na query todos os registros da tabela da direita e registros correspondentes na tabela da esquerda, caso existam.
+    UNION - Permite combinar dados provenientes de duas ou mais tabelas (ou da mesma tabela, dado condições distintas).
+            Porém, ao invés de combinar as colunas dessas tabelas, a UNION combina as linhas de um ou mais conjuntos. Operação de soma de conjuntos.
+
+3. Para que serve o GROUP BY?
+
+    GROUP BY nos auxilia no agrupamento dos resultados de acordo com as colunas indicada, gerando um único registro para cada grupo de linhas que
+    compartilham as colunas indicadas.
+
+4. Para que serve o HAVING?
+
+    Cláusula utilizada após o GROUP BY para adicionar condições após agrupamento de registros. É utilizada em um grupo de registros.
+
+5. Escreva uma consulta genérica para cada um dos seguintes diagramas:
+
+    INNER JOIN
+
+        SELECT t1.coluna, t2.coluna
+        FROM tabela1 AS t1
+        INNER JOIN tabela2 AS t2
+        ON t1.coluna_em_comum = t2.coluna_em_comum;
+
+    LEFT JOIN
+
+        SELECT t1.coluna, t2.coluna
+        FROM tabela1 AS t1
+        LEFT JOIN tabela2 AS t2
+        ON t1.coluna_em_comum = t2.coluna_em_comum;
