@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 public class ExceptionDetails {
     private String title;
     private String message;
+    private String fields;
+    private String fieldsMessages;
     private LocalDateTime timestamp;
 }
 
