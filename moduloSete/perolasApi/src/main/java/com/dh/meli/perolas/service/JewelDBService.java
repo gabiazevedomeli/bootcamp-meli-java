@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.dh.meli.perolas.exceptions.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class JewelDBService implements InterfaceJewelDBService {
@@ -26,20 +27,36 @@ public class JewelDBService implements InterfaceJewelDBService {
 
     @Override
     public JewelDB createNewJewel(JewelDB newJewel) {
-        if (newJewel.getId() != 0) return null;
+        if (newJewel.getId() != null) {
+            throw new JewelBadRequestException("The Jewel cannot have a ID to be insert on database");
+        }
         return jewelRepo.save(newJewel);
     }
 
     @Override
-    public JewelDB updateJewel(Long id) {
-        return null;
+    public JewelDB updateJewel(JewelDB newJewelInfo) {
+        getJewelById(newJewelInfo.getId());
+        return jewelRepo.save(newJewelInfo);
+    }
+
+    @Override
+    public JewelDB updatePartialJewel(Long id, Map<String, ?> changes) {
+        JewelDB jewelFound = getJewelById(id);
+
+        changes.forEach((key, value) -> {
+            switch (key) {
+                case "material": jewelFound.setMaterial((String) value); break;
+                case "weight": jewelFound.setWeight((Double) value); break;
+                case "carats": jewelFound.setCarats((Integer) value); break;
+            }
+        });
+
+        return jewelRepo.save(jewelFound);
     }
 
     @Override
     public void deleteJewel(Long id) {
-        if (jewelRepo.findById(id).isPresent()) {
-            jewelRepo.deleteById(id);
-        }
+        JewelDB jewelFound = getJewelById(id);
+        jewelRepo.delete(jewelFound);
     }
-
 }
