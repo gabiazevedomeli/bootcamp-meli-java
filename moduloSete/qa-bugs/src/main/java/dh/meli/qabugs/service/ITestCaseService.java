@@ -1,8 +1,10 @@
 package dh.meli.qabugs.service;
 
 import dh.meli.qabugs.model.TestCase;
+import org.aspectj.weaver.ast.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ITestCaseService {
     // crie um novo cado de teste
@@ -19,7 +21,11 @@ public interface ITestCaseService {
 
     // atualizar um caso de teste por id
 
-    TestCase updateTestCase(Long id);
+    TestCase updateTestCase(Long id, TestCase testCase);
+
+    // atualização parcial de um test case
+
+    TestCase partialTestCaseUpdate(Long id, Map<String, ?> testCaseChanges);
 
     // excluir um caso de teste por id
 
