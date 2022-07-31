@@ -61,4 +61,9 @@ public class TestCaseService implements ITestCaseService {
         getTestCaseById(id);
         testcaseRepo.deleteById(id);
     }
+
+    @Override
+    public List<TestCase> findAllTestCasesByDate(Date date) {
+        return testcaseRepo.findTestCaseByDate(date);
+    }
 }
