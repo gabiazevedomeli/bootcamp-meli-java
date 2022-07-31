@@ -3,10 +3,13 @@ package dh.meli.qabugs.controller;
 import dh.meli.qabugs.model.TestCase;
 import dh.meli.qabugs.service.TestCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +28,13 @@ public class TestCaseController {
     @GetMapping("/{id}")
     public ResponseEntity<TestCase> getTestCaseById(@PathVariable Long id) {
         return ResponseEntity.ok(testCaseService.getTestCaseById(id));
+    }
+
+    @GetMapping("/date")
+    public ResponseEntity<List<TestCase>> getTestcaseByDate(
+            @RequestParam("last_update")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+        return ResponseEntity.ok(testCaseService.findAllTestCasesByDate(date));
     }
 
     @PostMapping("/new")
