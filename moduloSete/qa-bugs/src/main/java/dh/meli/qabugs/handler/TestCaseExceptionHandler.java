@@ -1,5 +1,6 @@
 package dh.meli.qabugs.handler;
 
+import dh.meli.qabugs.exceptions.TestCaseBadRequestException;
 import dh.meli.qabugs.exceptions.TestCaseNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,18 @@ public class TestCaseExceptionHandler extends ResponseEntityExceptionHandler {
                         .statusCode(404)
                         .timestamp(LocalDateTime.now())
                         .build(), HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler(TestCaseBadRequestException.class)
+    public ResponseEntity<TestCaseExceptionsDetails> handleTestCaseBadRequestException(TestCaseBadRequestException exception) {
+        return new ResponseEntity<>(
+                TestCaseExceptionsDetails.builder()
+                        .message(exception.getMessage())
+                        .errorType("BAD_REQUEST")
+                        .statusCode(400)
+                        .timestamp(LocalDateTime.now())
+                        .build(), HttpStatus.BAD_REQUEST
         );
     }
 }
