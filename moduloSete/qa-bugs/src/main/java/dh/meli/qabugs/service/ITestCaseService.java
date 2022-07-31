@@ -3,6 +3,7 @@ package dh.meli.qabugs.service;
 import dh.meli.qabugs.model.TestCase;
 import org.aspectj.weaver.ast.Test;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,8 @@ public interface ITestCaseService {
     void deleteTestCase(Long id);
 
     // encontre todos os casos de teste que foram atualizados após uma determinada data (método customizado)
+
+    List<TestCase> findAllTestCasesByDate(Date date);
 }
 
 
